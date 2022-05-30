@@ -70,8 +70,8 @@ function comenzar() {
             wWord.appendChild(fallidoSpace);    
             }
     if(responsive.matches){
+        mostrar(letraV);
         letraV.focus();
-        mostrar(letraV)
     }
     jugando = true;
     letraV.value = '';
