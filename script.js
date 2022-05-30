@@ -88,11 +88,11 @@ function arranque() {
 //Funciones para jugar
 function jugarDesktop() {
     if(jugando == true && desktop.matches){
-    captarTecla(event);
+        captarTecla(event);
         if(alphabet.indexOf(key) != -1){
-        mostrarletra();
-        mostrarerror();
-        fin();
+            mostrarletra();
+            mostrarerror();
+            fin();
         }
     }
 }
@@ -100,13 +100,14 @@ function jugarDesktop() {
 function jugarmobile() {
     if(jugando == true){
         if(responsive.matches){
-        key = letraV.value;
-        key = key.toUpperCase();
+            mostrar(letraV)
+            key = letraV.value;
+            key = key.toUpperCase();
         }
         if(alphabet.indexOf(key) != -1) {
-        mostrarletra();
-        mostrarerror();
-        fin();
+            mostrarletra();
+            mostrarerror();
+            fin();
         }
         letraV.value = '';
         letraV.focus();
@@ -115,7 +116,7 @@ function jugarmobile() {
 
 function pausar(){
     if(jugando == true){
-    mostrar(pausa);
+        mostrar(pausa);
     }
 }
 
@@ -126,7 +127,7 @@ function continuar() {
 function captarTecla (event) {
         keypressed = event.which || event.keyCode;
         if((keypressed>64 && keypressed<91)||keypressed==192){   
-        key = String.fromCharCode(keypressed);
+            key = String.fromCharCode(keypressed);
         }else{key = ''}
         
 }
@@ -161,7 +162,7 @@ function fin() {
         jugando = false;
     }
     if(jugando == false){
-        letraV.blur();
+        ocultar(letraV);
     }
 
 }
@@ -176,29 +177,29 @@ function reroll() {
 }
 
 function limpiar () {
-        win.innerHTML = '';
-        lose.innerHTML = '';
-        wLetter.innerHTML = '';
-        rWord.innerHTML = '';
-        validador.length = 0;
-        wLetters = [];
-        restaintentos = 7;
-        newWord.value = '';
-        for (i=3; i<ahorcado.length;i++){
-            tapar(ahorcado[i]);
-        }
+    win.innerHTML = '';
+    lose.innerHTML = '';
+    wLetter.innerHTML = '';
+    rWord.innerHTML = '';
+    validador.length = 0;
+    wLetters = [];
+    restaintentos = 7;
+    newWord.value = '';
+    for (i=3; i<ahorcado.length;i++){
+        tapar(ahorcado[i]);
+    }
     if(rLetter.length > 0){
         borrachild(largo,rWord,rLetter);
-     }
+    }
     if(game.style.display == "flex"){
         borrachild(intentos,wWord,wLetter)
     }
 }
 
 function borrachild(ciclos,padre,hijo) {
- for (i=0; i<ciclos; i++) {
-     padre.removeChild(hijo[0]);
- }
+    for (i=0; i<ciclos; i++) {
+        padre.removeChild(hijo[0]);
+    }
 }
 
 function volver(){
@@ -251,7 +252,7 @@ function savestart(){
     }else{alert("La palabra debe contener sólo letras sin caracteres especiales");
           cumple = 0;
           newWord.value = ''; 
-         }  
+    }  
 }
 //Acciones de los botones
 startButton.onclick = arranque
