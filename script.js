@@ -71,6 +71,7 @@ function comenzar() {
             }
     if(responsive.matches){
         letraV.focus();
+        mostrar(letraV)
     }
     jugando = true;
     letraV.value = '';
@@ -100,7 +101,7 @@ function jugarDesktop() {
 function jugarmobile() {
     if(jugando == true){
         if(responsive.matches){
-            mostrar(letraV)
+           
             key = letraV.value;
             key = key.toUpperCase();
         }
