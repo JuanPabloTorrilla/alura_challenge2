@@ -98,13 +98,12 @@ function jugarDesktop() {
 }
 
 function jugarmobile() {
-    if(jugando = true){
+    if(jugando == true){
         if(responsive.matches){
         key = letraV.value;
         key = key.toUpperCase();
         }
         if(alphabet.indexOf(key) != -1) {
-        console.log(key);
         mostrarletra();
         mostrarerror();
         fin();
@@ -155,13 +154,14 @@ function fin() {
     if(validador.length == arrayPalabra.length) {
         win.innerHTML = "Has ganado!!!";
         jugando = false;
-        letraV.blur()
     }
     if(restaintentos == 0) {
         lose.innerHTML = "Has fallado";
         rWord.innerHTML = "La palabra era: "+palabra;
         jugando = false;
-        letraV.blur()
+    }
+    if(jugando == false){
+        letraV.blur();
     }
 
 }
