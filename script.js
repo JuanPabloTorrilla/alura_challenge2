@@ -73,6 +73,7 @@ function comenzar() {
         mostrar(letraV);
         letraV.focus();
     }
+    letraV.focus();
     jugando = true;
     letraV.value = '';
 }
