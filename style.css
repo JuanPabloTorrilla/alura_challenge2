@@ -458,10 +458,8 @@ Button{
 	.botoneraGame{
 		display: block;
 		left: 0px;
-    	width: auto;
-    	height: auto;
-		position: relative;
-		margin: 43% 0;
+    	width: 228px;
+		margin: 43% auto;
 	}
 	.word{
 		left: -13px;
@@ -471,7 +469,7 @@ Button{
 	}
 
 	.leftButton{
-		margin: 0 14% 0 18%;
+		margin: 0;
 	}
 
 
@@ -485,11 +483,11 @@ Button{
 	}
 
 	#newGameButton {
-		margin: 0 14% 0 18%;
+		margin: 0
 	}
 
 	.rightButton{
-		margin: 0 14% 0 18%;
+		margin: 0
 	}
 
 
