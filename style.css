@@ -430,6 +430,12 @@ Button{
 	animation:float 1.2s ease-in-out infinite;
 }
 
+.terminado{
+	text-align: center;
+    color: red;
+    font-weight: bold;
+}
+
 #pausa {
 	display: none;
 	flex-direction: column;

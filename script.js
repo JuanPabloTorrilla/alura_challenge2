@@ -189,7 +189,7 @@ function fin() {
         ocultar(letraV);
     }
     if(palabras2.length == 0){
-        terminado.innerHTML = "Eso fue demasiado. Estoy derrotado, no se me ocurren más palabras."
+        terminado.innerHTML = "Eso fue demasiado. Estoy derrotado, no se me ocurren más palabras.";
     } 
 }
 
@@ -200,7 +200,8 @@ function reroll() {
     };
     if(score == palabras.length){
         palabras2 = Object.assign([], palabras);
-        score = 0
+        score = 0;
+        terminado.innerHTML = "";
     }
     limpiar();
     palabra = palabras2[Math.floor(Math.random()*palabras2.length)];
