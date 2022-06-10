@@ -39,11 +39,12 @@ const intentos = 7;
 var restaintentos = 7; //Verifica si quedan intentos
 var validador = new Array(0); //Valida las letras correctas
 var jugando = false; //verifica si está activo el juego
-var alphabet = ['Q','W','E','R','T','Y','U','I','O','P','A','S','D','F','G','H','J','K','L','Z','X','C','V','B','N','M']
+var alphabet = ['Q','W','E','R','T','Y','U','I','O','P','A','S','D','F','G','H','J','K','L','Ñ','Z','X','C','V','B','N','M']
 var responsive = window.matchMedia("(max-width: 700px)")
 var desktop = window.matchMedia("(min-width: 701px)")
 let score = 0;
-let highScore = 0;
+let highScore = localStorage.getItem('highScore');
+showhighscore.innerHTML = "HighScore: "+highScore;
 
 //Funciones para mostrar u ocultar objetos
 function ocultar (algo) {
@@ -134,10 +135,11 @@ function continuar() {
 
 function captarTecla (event) {
         keypressed = event.which || event.keyCode;
-        if((keypressed>64 && keypressed<91)||keypressed==192){   
+        if((keypressed>64 && keypressed<91)){   
             key = String.fromCharCode(keypressed);
         }else{key = ''}
-        
+        if((event.which || event.keyCode)==192){key = "Ñ"}
+        console.log(keypressed)
 }
 
 function mostrarletra(){
@@ -169,6 +171,7 @@ function fin() {
         if(score >= highScore){highScore=score;};
         showscore.innerHTML = 'Score: '+score;
         showhighscore.innerHTML = 'HighScore: '+highScore;
+        localStorage.setItem('highScore', highScore);
     }
     if(restaintentos == 0) {
         lose.innerHTML = "Has fallado";
