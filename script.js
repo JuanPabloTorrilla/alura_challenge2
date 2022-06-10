@@ -11,23 +11,24 @@ const wWord = document.querySelector('.wrongWord');
 const retButton = document.querySelector('.returnButton');
 const draw = document.querySelector('.draw');
 const title = document.querySelector('.title');
-const addword = document.querySelector('.addWord')
+const addword = document.querySelector('.addWord');
 const game = document.querySelector('.game');
 const rLetter = document.getElementsByClassName('rightLetter');
 const wLetter = document.getElementsByClassName('wrongLetter');
 const ahorcado = document.getElementsByClassName('ahorcado');
 const win = document.querySelector('.win');
 const lose = document.querySelector('.lose');
-const dibujo = document.querySelector('#dibujo')
-const nombre = document.querySelector('#nombre')
-const letraV = document.querySelector('#letraVirtual')
-const pausa = document.querySelector('#pausa')
-let showscore = document.querySelector('.score');
-let showhighscore = document.querySelector('.highscore');
+const dibujo = document.querySelector('#dibujo');
+const nombre = document.querySelector('#nombre');
+const letraV = document.querySelector('#letraVirtual');
+const pausa = document.querySelector('#pausa');
+const showscore = document.querySelector('.score');
+const showhighscore = document.querySelector('.highscore');
+const terminado = document.querySelector('.terminado');
 
 //Variables para el juego
 const palabras = ['SOL','CASA','ARBOL','SALIDA','COLOREAR','SALMUERA','PODA','TALAR','PESCADO','ALADO','ALIANZA','ALTURA','CAJONES','CORREA','CADENAS','COMETA','CAIMAN','REAL','PUERTA','AVARO','APATICO','POLEA','ALPACA','MINIMO','RATON','CALOR','OLEADA','INVIERNO','VERANO','PAREJO','APARATO','APAREJO','OPULENTO','SALVAJE','SANTO','SORBER','CEPILLO','SORTEA','ALAMBRE','SARGENTO','ALARDEO','ARQUEA','CURVA','PELOTA','DEPORTE'];
-var palabras2 = Object.assign([], palabras)
+var palabras2 = Object.assign([], palabras);
 var palabra = palabras2[Math.floor(Math.random()*palabras2.length)]; //Selección aleatoria de palabra
 var arrayPalabra = palabra.toString().split('');
 var largo = arrayPalabra.length;
@@ -186,6 +187,9 @@ function fin() {
     }
     if(jugando == false){
         ocultar(letraV);
+    }
+    if(palabras2.length == 0){
+        terminado.innerHTML = "Eso fue demasiado. Estoy derrotado, no se me ocurren más palabras."
     } 
 }
 
@@ -193,6 +197,10 @@ function fin() {
 function reroll() {
     if(restaintentos == 0){
         showscore.innerHTML = 'Score: '+score;
+    };
+    if(score == palabras.length){
+        palabras2 = Object.assign([], palabras);
+        score = 0
     }
     limpiar();
     palabra = palabras2[Math.floor(Math.random()*palabras2.length)];
