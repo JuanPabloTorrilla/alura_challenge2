@@ -51,8 +51,12 @@ h1 {
    h1 span:nth-child(14){ animation-delay:.65s; }
 
 header{
+	display: flex;
+	justify-content: space-between;
 	width: 50%;
 	margin: 0 0 0 0;
+	color: #0a3871;
+	font-weight: 600;
 }
 
 main{
@@ -62,7 +66,7 @@ main{
 
  #dibujo{
     width: 115px;
-    margin: 34px auto 0;
+    margin: 34px auto 3rem;
 	animation:float .2s ease-in-out infinite;
 }
 
@@ -111,7 +115,7 @@ body:hover #dibujo { animation:bounce .6s; }
  .title{
 	display: flex;
 	flex-direction: column;
-	margin: 6rem auto 0;
+	margin: 0 auto;
 }
 
 Button{

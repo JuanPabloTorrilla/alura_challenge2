@@ -1,31 +1,34 @@
 //Elementos del HTML
-var start = document.querySelector('#startButton');
-var addWordB = document.querySelector('#addWordButton');
-var newWord = document.querySelector('.newWord');
-var save = document.querySelector('#saveButton');
-var cancel = document.querySelector('#cancelButton');
-var newGame = document.querySelector('#newGameButton');
-var returnB = document.querySelector('#returnButton');
-var rWord = document.querySelector('.rightWord');
-var wWord = document.querySelector('.wrongWord');
-var retButton = document.querySelector('.returnButton');
-var draw = document.querySelector('.draw');
-var title = document.querySelector('.title');
-var addword = document.querySelector('.addWord')
-var game = document.querySelector('.game');
-var rLetter = document.getElementsByClassName('rightLetter');
-var wLetter = document.getElementsByClassName('wrongLetter');
-var ahorcado = document.getElementsByClassName('ahorcado');
-var win = document.querySelector('.win');
-var lose = document.querySelector('.lose');
-var dibujo = document.querySelector('#dibujo')
-var nombre = document.querySelector('#nombre')
-var letraV = document.querySelector('#letraVirtual')
-var pausa = document.querySelector('#pausa')
+const start = document.querySelector('#startButton');
+const addWordB = document.querySelector('#addWordButton');
+const newWord = document.querySelector('.newWord');
+const save = document.querySelector('#saveButton');
+const cancel = document.querySelector('#cancelButton');
+const newGame = document.querySelector('#newGameButton');
+const returnB = document.querySelector('#returnButton');
+const rWord = document.querySelector('.rightWord');
+const wWord = document.querySelector('.wrongWord');
+const retButton = document.querySelector('.returnButton');
+const draw = document.querySelector('.draw');
+const title = document.querySelector('.title');
+const addword = document.querySelector('.addWord')
+const game = document.querySelector('.game');
+const rLetter = document.getElementsByClassName('rightLetter');
+const wLetter = document.getElementsByClassName('wrongLetter');
+const ahorcado = document.getElementsByClassName('ahorcado');
+const win = document.querySelector('.win');
+const lose = document.querySelector('.lose');
+const dibujo = document.querySelector('#dibujo')
+const nombre = document.querySelector('#nombre')
+const letraV = document.querySelector('#letraVirtual')
+const pausa = document.querySelector('#pausa')
+let showscore = document.querySelector('.score');
+let showhighscore = document.querySelector('.highscore');
 
 //Variables para el juego
-var palabras = ['SOL','CASA','ARBOL','SALIDA','COLOREAR','SALMUERA','PODA','TALAR','PESCADO','ALADO','ALIANZA','ALTURA','CAJONES','CORREA','CADENAS','COMETA','CAIMAN','REAL','PUERTA','AVARO','APATICO','POLEA','ALPACA','MINIMO','RATON','CALOR','OLEADA','INVIERNO','VERANO','PAREJO','APARATO','APAREJO','OPULENTO','SALVAJE','SANTO','SORBER','CEPILLO','SORTEA','ALAMBRE','SARGENTO','ALARDEO','ARQUEA','CURVA','PELOTA','DEPORTE'];
-var palabra = palabras[Math.floor(Math.random()*palabras.length)]; //Selección aleatoria de palabra
+const palabras = ['SOL','CASA','ARBOL','SALIDA','COLOREAR','SALMUERA','PODA','TALAR','PESCADO','ALADO','ALIANZA','ALTURA','CAJONES','CORREA','CADENAS','COMETA','CAIMAN','REAL','PUERTA','AVARO','APATICO','POLEA','ALPACA','MINIMO','RATON','CALOR','OLEADA','INVIERNO','VERANO','PAREJO','APARATO','APAREJO','OPULENTO','SALVAJE','SANTO','SORBER','CEPILLO','SORTEA','ALAMBRE','SARGENTO','ALARDEO','ARQUEA','CURVA','PELOTA','DEPORTE'];
+var palabras2 = Object.assign([], palabras)
+var palabra = palabras2[Math.floor(Math.random()*palabras2.length)]; //Selección aleatoria de palabra
 var arrayPalabra = palabra.toString().split('');
 var largo = arrayPalabra.length;
 var keypressed = '';
@@ -39,6 +42,9 @@ var jugando = false; //verifica si está activo el juego
 var alphabet = ['Q','W','E','R','T','Y','U','I','O','P','A','S','D','F','G','H','J','K','L','Z','X','C','V','B','N','M']
 var responsive = window.matchMedia("(max-width: 700px)")
 var desktop = window.matchMedia("(min-width: 701px)")
+let score = 0;
+let highScore = 0;
+
 //Funciones para mostrar u ocultar objetos
 function ocultar (algo) {
     algo.style.display= 'none';
@@ -157,22 +163,33 @@ function fin() {
     if(validador.length == arrayPalabra.length) {
         win.innerHTML = "Has ganado!!!";
         jugando = false;
+        score++;
+        console.log(score);
+        palabras2.splice(palabras2.indexOf(palabra),1);
+        if(score >= highScore){highScore=score;};
+        showscore.innerHTML = 'Score: '+score;
+        showhighscore.innerHTML = 'HighScore: '+highScore;
     }
     if(restaintentos == 0) {
         lose.innerHTML = "Has fallado";
         rWord.innerHTML = "La palabra era: "+palabra;
         jugando = false;
+        palabras2 = Object.assign([], palabras);
+        score = 0;
+        console.log(score);
     }
     if(jugando == false){
         ocultar(letraV);
-    }
-
+    } 
 }
 
 //Funciones para reiniciar el juego
 function reroll() {
+    if(restaintentos == 0){
+        showscore.innerHTML = 'Score: '+score;
+    }
     limpiar();
-    palabra = palabras[Math.floor(Math.random()*palabras.length)];
+    palabra = palabras2[Math.floor(Math.random()*palabras2.length)];
     arrayPalabra = palabra.toString().split('');
     largo = arrayPalabra.length;
     comenzar();
@@ -254,7 +271,7 @@ function savestart(){
     }else{alert("La palabra debe contener sólo letras sin caracteres especiales");
           cumple = 0;
           newWord.value = ''; 
-    }  
+    } 
 }
 //Acciones de los botones
 startButton.onclick = arranque
