@@ -64,6 +64,9 @@ function destapar (algo) {
 }
 
 //Funciones para dar inicio a la partida
+if(highScore == null){
+    showhighscore.innerHTML = "HighScore: 0"
+}
 function comenzar() {
     for (i=0 ; i< largo ; i++) {
         letterSpace = document.createElement('div');
